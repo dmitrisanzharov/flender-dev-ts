@@ -1,0 +1,43 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+//********************************************************************
+//          GENERAL CODE
+// *******************************************************************
+
+//TODO HEADING ARE H3 by default
+
+.addPadding20 {
+	padding: 20px;
+}
+
+.addPadding60 {
+	padding: 60px;
+}
+
+.cursorPointer {
+	cursor: pointer;
+}
+
+//********************************************************************
+//         NavBar
+// *******************************************************************
+nav {
+	border: 1px solid blue;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+nav .LoginAndGetStartedBox {
+	display: flex;
+	column-gap: 10px;
+}

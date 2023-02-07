@@ -1,0 +1,35 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.addPadding20 {
+  padding: 20px;
+}
+
+.addPadding60 {
+  padding: 60px;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+nav {
+  border: 1px solid blue;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav .LoginAndGetStartedBox {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}/*# sourceMappingURL=globalStyles.css.map */
