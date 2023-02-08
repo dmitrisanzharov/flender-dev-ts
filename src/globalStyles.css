@@ -21,6 +21,11 @@ body {
   cursor: pointer;
 }
 
+.warningText {
+  font-weight: 700;
+  color: red;
+}
+
 nav {
   border: 1px solid blue;
   padding: 20px;
