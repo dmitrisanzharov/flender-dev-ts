@@ -8,7 +8,9 @@ const NavBar = (props: Props) => {
 		<nav>
 			<Link to="/">Flender Logo</Link>
 			<div className="LoginAndGetStartedBox">
-				<button className="cursorPointer">Log in</button>
+				<button className="cursorPointer">
+					<Link to="/login">Log in</Link>
+				</button>
 				<button className="cursorPointer">
 					<Link to="/join">Register</Link>
 				</button>

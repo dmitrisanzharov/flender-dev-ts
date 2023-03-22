@@ -37,4 +37,8 @@ nav .LoginAndGetStartedBox {
   display: flex;
   -moz-column-gap: 10px;
        column-gap: 10px;
+}
+
+.invReg_CountryCodeAndTelephone {
+  display: flex;
 }/*# sourceMappingURL=globalStyles.css.map */
