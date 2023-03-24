@@ -9,6 +9,67 @@ body {
 	padding: 0;
 }
 
+* {
+	box-sizing: border-box;
+}
+
+// borders
+
+.drr {
+	border: 2px solid red;
+}
+
+.dbb {
+	border: 2px solid blue;
+}
+
+.dgg {
+	border: 2px solid green;
+}
+
+.dyy {
+	border: 2px solid yellow;
+}
+
+.dpp {
+	border: 2px solid pink;
+}
+
+// fully done - dmitri done border
+.ddb {
+	border: 1px solid gray;
+}
+
+// backgrounds
+
+.bgr {
+	background-color: red;
+}
+
+.bgb {
+	background-color: blue;
+}
+
+.bgg {
+	background-color: green;
+}
+
+.bgd {
+	background-color: lightgray;
+}
+
+.bgy {
+	background-color: yellow;
+}
+
+.bgo {
+	background-color: orange;
+}
+
+.bgpnk {
+	background-color: pink;
+}
+
 //********************************************************************
 //          GENERAL CODE
 // *******************************************************************
@@ -52,4 +113,33 @@ nav .LoginAndGetStartedBox {
 // *******************************************************************
 .invReg_CountryCodeAndTelephone {
 	display: flex;
+}
+
+//********************************************************************
+//          Dashboard NavBar
+// *******************************************************************
+.DashboardNavBar_Container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.DashboardNavBar_Container_RightItemsBox {
+	display: flex;
+	gap: 10px;
+}
+
+//********************************************************************
+//          Marketplace projects
+// *******************************************************************
+
+.MarketplaceContainer_SingleProject {
+	border: 2px solid gray;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+}
+
+.MarketplaceContainer_SingleProject:hover {
+	border: 2px solid red;
+	cursor: pointer;
 }

@@ -9,6 +9,62 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.drr {
+  border: 2px solid red;
+}
+
+.dbb {
+  border: 2px solid blue;
+}
+
+.dgg {
+  border: 2px solid green;
+}
+
+.dyy {
+  border: 2px solid yellow;
+}
+
+.dpp {
+  border: 2px solid pink;
+}
+
+.ddb {
+  border: 1px solid gray;
+}
+
+.bgr {
+  background-color: red;
+}
+
+.bgb {
+  background-color: blue;
+}
+
+.bgg {
+  background-color: green;
+}
+
+.bgd {
+  background-color: lightgray;
+}
+
+.bgy {
+  background-color: yellow;
+}
+
+.bgo {
+  background-color: orange;
+}
+
+.bgpnk {
+  background-color: pink;
+}
+
 .addPadding20 {
   padding: 20px;
 }
@@ -41,4 +97,26 @@ nav .LoginAndGetStartedBox {
 
 .invReg_CountryCodeAndTelephone {
   display: flex;
+}
+
+.DashboardNavBar_Container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DashboardNavBar_Container_RightItemsBox {
+  display: flex;
+  gap: 10px;
+}
+
+.MarketplaceContainer_SingleProject {
+  border: 2px solid gray;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.MarketplaceContainer_SingleProject:hover {
+  border: 2px solid red;
+  cursor: pointer;
 }/*# sourceMappingURL=globalStyles.css.map */
