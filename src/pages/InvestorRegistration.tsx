@@ -16,6 +16,7 @@ const InvestorRegistration = (props: Props) => {
 	const [showPassConf, setShowPassConf] = useState(false);
 	const [redirect, setRedirect] = useState(false);
 	const [userExists, setUserExists] = useState(false);
+	const [buttonDisabledState, setButtonDisabledState] = useState(true);
 	const navigate = useNavigate();
 
 	const validationSchema = z
@@ -91,6 +92,24 @@ const InvestorRegistration = (props: Props) => {
 	// useEffect(() => {
 	// 	console.log("these are all errors", errors.fName);
 	// });
+
+	useEffect(() => {
+		console.log(watch("fName"));
+		if (
+			watch("fName") &&
+			watch("sName") &&
+			watch("email") &&
+			watch("countryCode") &&
+			watch("telephone") &&
+			watch("password") &&
+			watch("confirm") &&
+			watch("isHuman")
+		) {
+			setButtonDisabledState(false);
+		} else {
+			setButtonDisabledState(true);
+		}
+	}, [watch()]);
 
 	useEffect(() => {
 		if (!redirect) {
@@ -205,7 +224,11 @@ const InvestorRegistration = (props: Props) => {
 					</div>
 				</div>
 				<br />
-				<input type="submit" onClick={handleIsHumanChange} />
+				<input
+					type="submit"
+					onClick={handleIsHumanChange}
+					disabled={buttonDisabledState}
+				/>
 			</form>
 			<hr />
 			<Link to="/login">If you already have an account go to LOGIN PAGE</Link>
