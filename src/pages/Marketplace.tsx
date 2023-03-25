@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getAllProjects } from "../utils/serverRoutes";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -55,10 +56,14 @@ const Marketplace = (props: Props) => {
 
 	if (state?.data) {
 		return (
-			<div>
+			<div className="MarketplaceContainer">
 				<h1>Marketplace</h1>
+				<div style={{ fontSize: "1.25rem", marginBottom: "1.25rem" }}>
+					<em>Successful Irish businesses growing with Flender finance</em>
+				</div>
 				{state?.data?.map((el) => {
 					const {
+						_id,
 						projectName,
 						nameOfCompany,
 						interestRateToDisplayOnACard,
@@ -73,33 +78,74 @@ const Marketplace = (props: Props) => {
 						latitudeLongitudeArray,
 					} = el;
 					return (
-						<div
-							key={projectName}
-							className="MarketplaceContainer_SingleProject"
-						>
-							<div>Project name: {projectName}</div>
-							<div>Company name: {nameOfCompany}</div>
-
-							<div>Interest rate: {interestRateToDisplayOnACard}%</div>
-							<div>Project Grade: {projectGrade}</div>
-							<div>
-								Amount requested:{" "}
-								{totalAmountAsStringNoEuroSign.toLocaleString("en-GB", {
-									style: "currency",
-									currency: "EUR",
-								})}
+						<Link to={`/projects/${projectName}/${_id}`} key={projectName}>
+							<div className="MarketplaceContainer_SingleProject">
+								<div>Project name: {projectName}</div>
+								<div>Company name: {nameOfCompany}</div>
+								<div>Company address: {address}</div>
+								<div>Interest rate: {interestRateToDisplayOnACard}%</div>
+								<div>Project Grade: {projectGrade}</div>
+								<div>
+									Amount requested:{" "}
+									{totalAmountAsStringNoEuroSign.toLocaleString("en-GB", {
+										style: "currency",
+										currency: "EUR",
+									})}
+								</div>
+								<div>
+									Total funded:{" "}
+									{totalFunded.toLocaleString("en-GB", {
+										style: "currency",
+										currency: "EUR",
+									})}
+								</div>
+								<div>
+									Project duration: {projectDurationInMonthsJustTheNumber}{" "}
+									months
+								</div>
+								<div>
+									<p>
+										<b>Why invest with us?</b>
+									</p>
+									<ul>
+										{whyInvestInUs?.map((el) => {
+											return <li key={el}>{el}</li>;
+										})}
+									</ul>
+								</div>
+								<div>
+									<p>
+										<b>How we will use your money?</b>
+									</p>
+									<ul>
+										{howWillWeUseYourInvestment?.map((el) => {
+											return <li key={el}>{el}</li>;
+										})}
+									</ul>
+								</div>
+								<div>
+									<p>
+										<b>Our Story</b>
+									</p>
+									<ul>
+										{ourStory?.map((el) => {
+											return <li key={el}>{el}</li>;
+										})}
+									</ul>
+								</div>
+								<iframe
+									width="600"
+									height="450"
+									style={{ border: "none" }}
+									loading="lazy"
+									referrerPolicy="no-referrer-when-downgrade"
+									src={`https://maps.google.com/maps?q=${
+										latitudeLongitudeArray[0]
+									},${latitudeLongitudeArray[1]}&z=${16}&output=embed`}
+									title="google map"
+								></iframe>
 							</div>
-							<div>
-								Total funded:{" "}
-								{totalFunded.toLocaleString("en-GB", {
-									style: "currency",
-									currency: "EUR",
-								})}
-							</div>
-							<div>
-								Project duration: {projectDurationInMonthsJustTheNumber} months
-							</div>
-						</div>
+						</Link>
 					);
 				})}
 			</div>

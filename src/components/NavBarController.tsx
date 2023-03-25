@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "./NavBar";
 import DashboardNavBar from "./DashboardNavBar";
+import { sessionUser } from "../utils/namesOfGlobalVariables";
 
 type Props = {};
 
@@ -13,7 +14,10 @@ const NavBarController = (props: Props) => {
 		console.log("=======================");
 	}, [location]);
 
-	if (location.pathname === "/dashboard") {
+	if (
+		sessionStorage.getItem(sessionUser) &&
+		location.pathname === "/dashboard"
+	) {
 		return <DashboardNavBar />;
 	}
 

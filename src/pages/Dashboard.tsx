@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const Dashboard = (props: Props) => {
+	// * CHECK IF LOGGED IN CODE
 	const userData = JSON.parse(sessionStorage.getItem(sessionUser) as string);
 	console.log("userData: ", userData);
 
@@ -41,6 +42,8 @@ const Dashboard = (props: Props) => {
 			</div>
 		);
 	}
+
+	// * END OF CHECKED IF LOGGED IN CODE
 
 	return (
 		<div>

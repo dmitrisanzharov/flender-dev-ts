@@ -143,3 +143,54 @@ nav .LoginAndGetStartedBox {
 	border: 2px solid red;
 	cursor: pointer;
 }
+
+.MarketplaceContainer_SingleProject div {
+	margin-bottom: 1rem;
+}
+
+.MarketplaceContainer_SingleProject ul li {
+	margin-bottom: 1rem;
+}
+
+.MarketplaceContainer a {
+	color: black;
+	text-decoration: none;
+}
+
+//********************************************************************
+//          Projects page
+// *******************************************************************
+.ProjectsContainer_ProjectSliderBackground {
+	width: 100%;
+	background-color: lightgray;
+	height: 10px;
+	position: relative;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.ProjectsContainer_ProjectSliderBackground_ProgressBar {
+	height: 14px;
+	background-color: blue;
+	position: absolute;
+	top: -2px;
+	left: 0;
+}
+
+.ProjectsContainer_ProjectSliderBackground_ProgressAmount {
+	position: absolute;
+	top: -25px;
+}
+
+.ProjectsContainer_ProjectSliderBackground_ProgressAmount_Figure {
+	position: absolute;
+	left: -40px;
+}
+
+.ProjectsContainer_AmountToInvestInputContainer {
+	display: flex;
+}
+
+.ProjectsContainer_AmountToInvestInputContainer input {
+	width: 7rem;
+}
