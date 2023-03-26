@@ -134,6 +134,12 @@ const Login = (props: Props) => {
 				<button type="submit">submit</button>
 			</form>
 			<hr />
+			<div>
+				<h4>Password reset</h4>
+
+				<Link to="/password-reset-email-page">click to reset password</Link>
+			</div>
+			<hr />
 			<Link to="/users/registration/investor">
 				If you are NOT REGISTERED, then go to Registration page
 			</Link>

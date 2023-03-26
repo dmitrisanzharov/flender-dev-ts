@@ -8,3 +8,6 @@ export const login: string = rootServer + "flender-ts/login";
 export const getAllProjects: string = rootServer + "finlenders/projects";
 export const getSingleProject: string =
 	rootServer + "finlenders/single-project";
+export const passwordResetEmailPage =
+	rootServer + "flender-ts/password-reset-email-page";
+export const passwordResetPage = rootServer + "flender-ts/password-reset-page";

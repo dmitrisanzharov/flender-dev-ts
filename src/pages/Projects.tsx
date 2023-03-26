@@ -3,7 +3,11 @@ import moment from "moment";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getSingleProject } from "../utils/serverRoutes";
-import { sessionUser } from "../utils/namesOfGlobalVariables";
+import {
+	sessionUser,
+	projectOfInterest,
+} from "../utils/namesOfGlobalVariables";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -61,6 +65,7 @@ const Projects = (props: Props) => {
 						2
 					).toFixed(2) as unknown as number
 				);
+				sessionStorage.setItem(projectOfInterest, JSON.stringify(res.data));
 			})
 			.catch((err) =>
 				setState({ loading: false, data: null, error: err.message })
@@ -176,6 +181,27 @@ const Projects = (props: Props) => {
 								{(totalAmountAsStringNoEuroSign - totalFunded).toFixed(0)}
 							</span>
 						</div>
+						<div>
+							<p>
+								Over required term of {projectDurationInMonthsJustTheNumber}{" "}
+								months
+							</p>
+							<p>Interest rate is: {interestRateToDisplayOnACard} %</p>
+							<p>Project grade is: {projectGrade}</p>
+							<h4>
+								Your potential returns are:{" "}
+								{(
+									(investAmount * interestRateToDisplayOnACard) /
+									100
+								).toLocaleString("en-GB", {
+									style: "currency",
+									currency: "EUR",
+								})}
+							</h4>
+						</div>
+						<button>
+							<Link to={`/invest?amount=${investAmount}`}>Start Investing</Link>
+						</button>
 					</div>
 				)}
 				<hr />
