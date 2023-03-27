@@ -13,6 +13,8 @@ import Projects from "./pages/Projects";
 import PasswordResetEmailPage from "./pages/PasswordResetEmailPage";
 import PasswordResetPage from "./pages/PasswordResetPage";
 import Invest from "./pages/Invest";
+import AddFunds from "./pages/AddFunds";
+import Withdraw from "./pages/Withdraw";
 
 // components
 import NavBarController from "./components/NavBarController";
@@ -29,6 +31,8 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/marketplace" element={<Marketplace />} />
 					<Route path="/invest" element={<Invest />} />
+					<Route path="/add-funds" element={<AddFunds />} />
+					<Route path="/withdraw" element={<Withdraw />} />
 					<Route path="/password-reset-page" element={<PasswordResetPage />} />
 					<Route
 						path="/projects/:projectName/:projectId"

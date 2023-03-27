@@ -8,6 +8,7 @@ import {
 	projectOfInterest,
 } from "../utils/namesOfGlobalVariables";
 import { Link } from "react-router-dom";
+import { calculateTotalInterest } from "../helper/helperFunctions";
 
 type Props = {};
 
@@ -190,13 +191,11 @@ const Projects = (props: Props) => {
 							<p>Project grade is: {projectGrade}</p>
 							<h4>
 								Your potential returns are:{" "}
-								{(
-									(investAmount * interestRateToDisplayOnACard) /
-									100
-								).toLocaleString("en-GB", {
-									style: "currency",
-									currency: "EUR",
-								})}
+								{calculateTotalInterest(
+									investAmount,
+									interestRateToDisplayOnACard,
+									projectDurationInMonthsJustTheNumber
+								)}
 							</h4>
 						</div>
 						<button>

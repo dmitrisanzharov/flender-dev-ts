@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { sessionUser } from "../utils/namesOfGlobalVariables";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -84,6 +85,18 @@ const Dashboard = (props: Props) => {
 					currency: "EUR",
 				})}
 			</p>
+			<br />
+			<div>
+				{" "}
+				<button>
+					<Link to="/add-funds">Add Funds</Link>
+				</button>{" "}
+				<button>
+					<Link to="/withdraw">Withdraw</Link>
+				</button>
+			</div>
+			<br />
+
 			<hr />
 			<h2>My Investments</h2>
 			<p>

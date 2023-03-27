@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { projectOfInterest } from "../utils/namesOfGlobalVariables";
+import {
+	projectOfInterest,
+	sessionUser,
+} from "../utils/namesOfGlobalVariables";
+import { investFlendersTs, investFINLENDERS } from "../utils/serverRoutes";
 import { useNavigate } from "react-router-dom";
+import {
+	calculateMonthlyRepaymentsRoughly,
+	calculateTotalInterest,
+} from "../helper/helperFunctions";
+import axios from "axios";
 
 type Props = {};
 
 const Invest = (props: Props) => {
+	const [redirect, setRedirect] = useState(false);
 	const amountToInvest = new URLSearchParams(window.location.search).get(
 		"amount"
 	);
@@ -14,9 +24,38 @@ const Invest = (props: Props) => {
 		sessionStorage?.getItem(projectOfInterest) as string
 	);
 
-	const [returnToMarketPlace, setReturnToMarketPlace] =
-		useState<boolean>(false);
+	const [returnToMarketPlace, setReturnToMarketPlace] = useState(false);
 	const navigate = useNavigate();
+
+	function handleInvest() {
+		console.log("handleInvest Triggered");
+		axios
+			.post(investFlendersTs, {
+				userId: JSON.parse(sessionStorage.getItem(sessionUser) as string)?._id,
+				amount: amountToInvest,
+			})
+			.then((el) => {
+				console.log(el.data);
+				sessionStorage.setItem(sessionUser, JSON.stringify(el.data));
+				console.log("user side is done, do project side now");
+			})
+			.catch((err) => console.log(err));
+
+		// * NESTING ANOTHER AXIOS HERE, UNFORTUNATELY THIS IS THE WAY TO DO IT  =/
+
+		axios
+			.post(investFINLENDERS, {
+				amount: amountToInvest,
+				projectId: projectData?._id,
+			})
+			.then((el) => {
+				console.log(el.data);
+				sessionStorage.setItem(projectOfInterest, JSON.stringify(el.data));
+				console.log("finlenders investment successful, redirect now");
+				setRedirect(true);
+			})
+			.catch((err) => console.log(err));
+	}
 
 	useEffect(() => {
 		if (!amountToInvest || !projectData) {
@@ -34,6 +73,15 @@ const Invest = (props: Props) => {
 		}, 2000);
 		return () => clearTimeout(timeOut);
 	}, [returnToMarketPlace]);
+
+	if (redirect) {
+		return (
+			<div>
+				<h1>Investment was a success</h1>
+				<h2>You are bei</h2>
+			</div>
+		);
+	}
 
 	if (returnToMarketPlace) {
 		return (
@@ -81,15 +129,33 @@ const Invest = (props: Props) => {
 					</li>
 					<li>
 						Monthly repayment to you {"(approx)"}:{" "}
-						{(
-							(amountToInvest as unknown as number) /
+						{calculateMonthlyRepaymentsRoughly(
+							amountToInvest,
+							interestRateToDisplayOnACard,
 							projectDurationInMonthsJustTheNumber
-						)?.toLocaleString("en-GB", {
-							style: "currency",
-							currency: "EUR",
-						})}
+						)}
+					</li>
+					<li>Interest rate on the loan: {interestRateToDisplayOnACard}%</li>
+					<li>
+						Interest you will earn on this loan:{" "}
+						{calculateTotalInterest(
+							amountToInvest,
+							interestRateToDisplayOnACard,
+							projectDurationInMonthsJustTheNumber
+						)}
 					</li>
 				</ul>
+				<hr />
+				<h3>Confirm and pay</h3>
+				<h2>Amount: € {Number(amountToInvest)?.toFixed(2)}</h2>
+				<button
+					onClick={() => {
+						navigate(-1);
+					}}
+				>
+					Back
+				</button>
+				<button onClick={handleInvest}>Make Payment</button>
 			</div>
 		);
 	}
