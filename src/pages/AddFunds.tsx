@@ -10,6 +10,7 @@ import {
 } from "../utils/namesOfGlobalVariables";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { addNotification } from "../helper/helperFunctions";
 
 type Props = {};
 
@@ -41,6 +42,7 @@ const AddFunds = (props: Props) => {
 			.then((el) => {
 				console.log(el.data);
 				sessionStorage.setItem(sessionUser, JSON.stringify(el.data));
+				addNotification("added funds", `you have added ${data.amount} euro`);
 				setRedirect(true);
 			})
 			.catch((err) => console.log(err));
@@ -71,7 +73,7 @@ const AddFunds = (props: Props) => {
 
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
-					<p>please enter amount, min is 10, max is 5000 euro</p>
+					<p>please enter amount, min is 50, max is 5000 euro</p>
 					<input type="number" min="50" max="5000" {...register("amount")} />
 					<div style={{ color: "red" }}>
 						{errors?.amount?.message as string}

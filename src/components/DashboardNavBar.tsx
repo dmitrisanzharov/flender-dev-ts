@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { sessionUser } from "../utils/namesOfGlobalVariables";
+import {
+	sessionUser,
+	projectOfInterest,
+} from "../utils/namesOfGlobalVariables";
 import { useNavigate } from "react-router-dom";
 
 type Props = {};
@@ -8,6 +11,7 @@ type Props = {};
 // TODO: Notifications
 
 const DashboardNavBar = (props: Props) => {
+	const [showNotifications, setShowNotifications] = useState(false);
 	const userData = JSON.parse(sessionStorage.getItem(sessionUser) as string);
 	const navigate = useNavigate();
 	const [showAddFundsDropDown, setShowAddFundsDropDown] =
@@ -15,6 +19,8 @@ const DashboardNavBar = (props: Props) => {
 
 	function handleLogout() {
 		sessionStorage.removeItem(sessionUser);
+		sessionStorage.removeItem(projectOfInterest);
+		sessionStorage.removeItem("fNotifications");
 		navigate("/");
 	}
 
@@ -50,11 +56,28 @@ const DashboardNavBar = (props: Props) => {
 							</div>
 						)}
 					</div>
-					<button>
-						Notifications:{" "}
-						<span style={{ color: "red", fontWeight: "bold" }}>TO DO</span>
-					</button>
-					<button onClick={handleLogout}>Logout</button>
+					<div className="DashboardNavBar_Container_RightItemsBox_NotificationsBox">
+						<button onClick={() => setShowNotifications(!showNotifications)}>
+							<span>{showNotifications ? "-" : "+"}</span> | Notifications
+						</button>
+						{showNotifications && sessionStorage.getItem("fNotifications") && (
+							<div className="DashboardNavBar_Container_RightItemsBox_NotificationsBox_DropDown">
+								{JSON.parse(sessionStorage.getItem("fNotifications") as string)
+									?.reverse()
+									.map((el) => {
+										return (
+											<div key={el.date}>
+												<div>{JSON.stringify(el)}</div>
+												<hr />
+											</div>
+										);
+									})}
+							</div>
+						)}
+					</div>
+					<div>
+						<button onClick={handleLogout}>Logout</button>
+					</div>
 				</div>
 			</div>
 		</nav>

@@ -7,6 +7,7 @@ import axios from "axios";
 import { login } from "../utils/serverRoutes";
 import { sessionUser } from "../utils/namesOfGlobalVariables";
 import { useNavigate } from "react-router-dom";
+import { addNotification } from "../helper/helperFunctions";
 
 type Props = {};
 
@@ -54,6 +55,7 @@ const Login = (props: Props) => {
 		// todo if all is good, so send instruction to redirect and save user as a Session
 		console.log("user received, added to session storage");
 		sessionStorage.setItem(sessionUser, JSON.stringify(res.data));
+		addNotification("login", "you have logged in");
 		setRedirect(true);
 	};
 

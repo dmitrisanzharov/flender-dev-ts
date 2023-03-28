@@ -9,6 +9,7 @@ import {
 	calculateMonthlyRepaymentsRoughly,
 	calculateTotalInterest,
 } from "../helper/helperFunctions";
+import { addNotification } from "../helper/helperFunctions";
 import axios from "axios";
 
 type Props = {};
@@ -33,6 +34,10 @@ const Invest = (props: Props) => {
 			.post(investFlendersTs, {
 				userId: JSON.parse(sessionStorage.getItem(sessionUser) as string)?._id,
 				amount: amountToInvest,
+				projectId: projectData?._id,
+				loanDurationInMonths: projectData?.projectDurationInMonthsJustTheNumber,
+				loanInterestRate: projectData?.interestRateToDisplayOnACard,
+				monthlyRepayment: // TODO   STOPPED HERE
 			})
 			.then((el) => {
 				console.log(el.data);
@@ -52,6 +57,10 @@ const Invest = (props: Props) => {
 				console.log(el.data);
 				sessionStorage.setItem(projectOfInterest, JSON.stringify(el.data));
 				console.log("finlenders investment successful, redirect now");
+				addNotification(
+					"invested funds",
+					`you have invested ${amountToInvest} euro`
+				);
 				setRedirect(true);
 			})
 			.catch((err) => console.log(err));
@@ -74,11 +83,22 @@ const Invest = (props: Props) => {
 		return () => clearTimeout(timeOut);
 	}, [returnToMarketPlace]);
 
+	useEffect(() => {
+		if (redirect === false) {
+			return;
+		}
+		const timeOut = setTimeout(() => {
+			navigate("/dashboard");
+		}, 2000);
+		return () => clearTimeout(timeOut);
+	}, [redirect]);
+
 	if (redirect) {
 		return (
 			<div>
 				<h1>Investment was a success</h1>
-				<h2>You are bei</h2>
+				<h2>You are being redirected to the DASHBOARD</h2>
+				<h2>============================</h2>
 			</div>
 		);
 	}

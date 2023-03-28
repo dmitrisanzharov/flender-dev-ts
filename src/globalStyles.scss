@@ -137,6 +137,18 @@ nav .LoginAndGetStartedBox {
 	position: absolute;
 }
 
+.DashboardNavBar_Container_RightItemsBox_NotificationsBox {
+	position: relative;
+}
+
+.DashboardNavBar_Container_RightItemsBox_NotificationsBox_DropDown {
+	position: absolute;
+	left: -200px;
+	z-index: 1;
+	background-color: gray;
+	padding: 20px;
+}
+
 //********************************************************************
 //          Marketplace projects
 // *******************************************************************
@@ -201,4 +213,21 @@ nav .LoginAndGetStartedBox {
 
 .ProjectsContainer_AmountToInvestInputContainer input {
 	width: 7rem;
+}
+
+//********************************************************************
+//          Dashboard Page
+// *******************************************************************
+
+.DashboardContainer {
+	position: relative;
+}
+
+.DashboardContainer_NotificationsBox {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 50px;
+	z-index: 1;
+	background-color: white;
 }

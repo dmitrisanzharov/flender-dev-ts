@@ -6,6 +6,7 @@ import { useForm, useController } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
 import { withdrawFunds } from "../utils/serverRoutes";
+import { addNotification } from "../helper/helperFunctions";
 import axios from "axios";
 
 type Props = {};
@@ -35,6 +36,10 @@ const Withdraw = (props: Props) => {
 			.then((el) => {
 				console.log("data", el.data);
 				sessionStorage.setItem(sessionUser, JSON.stringify(el.data));
+				addNotification(
+					"withdraw funds",
+					`you have withdrawn ${data.amount} euro`
+				);
 				setRedirect(true);
 			})
 			.catch((err) => console.log(err));
