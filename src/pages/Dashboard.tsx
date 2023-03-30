@@ -143,6 +143,9 @@ const Dashboard = (props: Props) => {
 				</button>{" "}
 				<button>
 					<Link to="/withdraw">Withdraw</Link>
+				</button>{" "}
+				<button>
+					<Link to="/transactions">Transactions</Link>
 				</button>
 			</div>
 			<br />

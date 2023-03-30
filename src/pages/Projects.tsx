@@ -195,7 +195,10 @@ const Projects = (props: Props) => {
 									investAmount,
 									interestRateToDisplayOnACard,
 									projectDurationInMonthsJustTheNumber
-								)}
+								)?.toLocaleString("en-GB", {
+									style: "currency",
+									currency: "EUR",
+								})}
 							</h4>
 						</div>
 						<button>

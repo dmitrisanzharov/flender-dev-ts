@@ -37,7 +37,18 @@ const Invest = (props: Props) => {
 				projectId: projectData?._id,
 				loanDurationInMonths: projectData?.projectDurationInMonthsJustTheNumber,
 				loanInterestRate: projectData?.interestRateToDisplayOnACard,
-				monthlyRepayment: // TODO   STOPPED HERE
+				monthlyRepayment: calculateMonthlyRepaymentsRoughly(
+					amountToInvest,
+					projectData?.interestRateToDisplayOnACard,
+					projectData?.projectDurationInMonthsJustTheNumber
+				),
+				totalInterestOnThisInvestment: calculateTotalInterest(
+					amountToInvest,
+					projectData?.interestRateToDisplayOnACard,
+					projectData?.projectDurationInMonthsJustTheNumber
+				),
+				projectName: projectData?.projectName,
+				projectGrade: projectData?.projectGrade,
 			})
 			.then((el) => {
 				console.log(el.data);
@@ -153,7 +164,10 @@ const Invest = (props: Props) => {
 							amountToInvest,
 							interestRateToDisplayOnACard,
 							projectDurationInMonthsJustTheNumber
-						)}
+						)?.toLocaleString("en-GB", {
+							style: "currency",
+							currency: "EUR",
+						})}
 					</li>
 					<li>Interest rate on the loan: {interestRateToDisplayOnACard}%</li>
 					<li>
@@ -162,7 +176,10 @@ const Invest = (props: Props) => {
 							amountToInvest,
 							interestRateToDisplayOnACard,
 							projectDurationInMonthsJustTheNumber
-						)}
+						)?.toLocaleString("en-GB", {
+							style: "currency",
+							currency: "EUR",
+						})}
 					</li>
 				</ul>
 				<hr />

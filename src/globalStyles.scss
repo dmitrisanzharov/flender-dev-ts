@@ -149,6 +149,14 @@ nav .LoginAndGetStartedBox {
 	padding: 20px;
 }
 
+.DashboardNavBar_Container_LinksToMarketPlaceEtc {
+	display: flex;
+	// padding: 0.5rem;
+	gap: 1rem;
+	border: 1px solid gray;
+	padding: 0px 0.75rem;
+}
+
 //********************************************************************
 //          Marketplace projects
 // *******************************************************************
@@ -230,4 +238,21 @@ nav .LoginAndGetStartedBox {
 	padding: 50px;
 	z-index: 1;
 	background-color: white;
+}
+
+//********************************************************************
+//          MY INVESTMENTS / INVESTMENTS PAGE
+// *******************************************************************
+
+.InvestmentsContainer table th {
+	border: 2px solid black;
+	background-color: lightgray;
+	padding: 10px;
+	text-align: center;
+}
+
+.InvestmentsContainer table td {
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
 }

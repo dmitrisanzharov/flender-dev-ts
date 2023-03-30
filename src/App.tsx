@@ -16,6 +16,7 @@ import Invest from "./pages/Invest";
 import AddFunds from "./pages/AddFunds";
 import Withdraw from "./pages/Withdraw";
 import Investments from "./pages/Investments";
+import Transactions from "./pages/Transactions";
 
 // components
 import NavBarController from "./components/NavBarController";
@@ -35,6 +36,7 @@ function App() {
 					<Route path="/add-funds" element={<AddFunds />} />
 					<Route path="/withdraw" element={<Withdraw />} />
 					<Route path="/investments" element={<Investments />} />
+					<Route path="/transactions" element={<Transactions />} />
 					<Route path="/password-reset-page" element={<PasswordResetPage />} />
 					<Route
 						path="/projects/:projectName/:projectId"

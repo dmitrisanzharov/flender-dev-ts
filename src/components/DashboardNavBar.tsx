@@ -28,7 +28,12 @@ const DashboardNavBar = (props: Props) => {
 		<nav>
 			<div className="DashboardNavBar_Container">
 				<Link to="/">Flender Logo</Link>
-				<Link to="/marketplace">Marketplace</Link>
+				<div className="DashboardNavBar_Container_LinksToMarketPlaceEtc">
+					<Link to="/marketplace">Marketplace</Link> |
+					<Link to="/investments">My Investments</Link> |
+					<Link to="/transactions">Transactions</Link>
+				</div>
+
 				<div className="DashboardNavBar_Container_RightItemsBox">
 					<div className="DashboardNavBar_Container_RightItemsBox_ShowAddFundsContainer">
 						<button

@@ -12,10 +12,7 @@ export function calculateTotalInterest(
 
 	const test1 = principle * Math.pow(intR, durY) - principle;
 
-	return (test1 / durY).toLocaleString("en-GB", {
-		style: "currency",
-		currency: "EUR",
-	});
+	return test1 / durY;
 }
 
 export function calculateMonthlyRepaymentsRoughly(
@@ -30,10 +27,7 @@ export function calculateMonthlyRepaymentsRoughly(
 
 	const test1 = (principle * Math.pow(intR, durY)) / durationInMonths;
 	// console.log("test1: ", test1);
-	return test1.toLocaleString("en-GB", {
-		style: "currency",
-		currency: "EUR",
-	});
+	return test1;
 }
 
 export function addNotification(type: string, text: string) {
