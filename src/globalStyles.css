@@ -220,4 +220,21 @@ nav .LoginAndGetStartedBox {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
+}
+
+.TranscationsContainer_CalendarContainer {
+  border: 2px solid lightgray;
+  margin: 1rem 0rem;
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.TranscationsContainer_CalendarContainer p {
+  font-weight: bold;
+}
+
+.TranscationsContainer_CalendarContainer_ProjectContent {
+  max-width: 80vw;
+  overflow-wrap: break-word;
 }/*# sourceMappingURL=globalStyles.css.map */

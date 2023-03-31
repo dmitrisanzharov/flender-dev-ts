@@ -1,11 +1,14 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import moment from "moment";
+import { jsPDF } from "jspdf";
 
 type Props = {};
 
 const Investments = (props: Props) => {
 	const [loanName, setLoanName] = useState("");
 	const [selectTerm, setSelectTerm] = useState("all");
+
+	const pdfDownload = useRef<HTMLInputElement>(null);
 
 	function filterLoanProjects() {
 		let test = JSON.parse(
@@ -70,6 +73,12 @@ const Investments = (props: Props) => {
 		return test;
 	}
 
+	function downloadAsPdf() {
+		console.log("downloadAsPdf");
+
+		(window as any).html2pdf(pdfDownload.current).save();
+	}
+
 	useEffect(() => {
 		console.log("loanName", loanName);
 		console.log("selectTerm", selectTerm);
@@ -99,76 +108,81 @@ const Investments = (props: Props) => {
 					<option value="37+">37 or more</option>
 				</select>
 			</div>
+			<div>
+				<p>Download options</p>
+				<button onClick={downloadAsPdf}>download as PDF</button>
+			</div>
 			<hr />
-			<table>
-				<thead>
-					<tr>
-						<th>Transaction date</th>
-						<th>Loan Id</th>
-						<th>Project Name</th>
-						<th>Project Grade</th>
-						<th>Loan duration in months</th>
-						<th>Amount in euro</th>
-						<th>Loan Interest Rate</th>
-						<th>Monthly repayments</th>
-						<th>Total Interest earned on this loan</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filterLoanProjects()?.map((el) => {
-						const {
-							amountInEuro,
-							loanId,
-							loanInterestRate,
-							monthlyRepayment,
-							projectName,
-							totalInterestOnThisInvestment,
-							transactionDate,
-							projectGrade,
-							loanDurationInMonths,
-						} = el;
-						return (
-							<tr
-								key={
-									transactionDate +
-									loanId +
-									amountInEuro +
-									projectName +
-									monthlyRepayment
-								}
-							>
-								<td>
-									{moment(transactionDate).format("MMMM Do YYYY, h:mm:ss a")}
-								</td>
-								<td>{loanId}</td>
-								<td>{projectName}</td>
-								<td>{projectGrade}</td>
-								<td>{loanDurationInMonths}</td>
-								<td>
-									{amountInEuro.toLocaleString("en-GB", {
-										style: "currency",
-										currency: "EUR",
-									})}
-								</td>
-								<td>{loanInterestRate}%</td>
-								<td>
-									{monthlyRepayment.toLocaleString("en-GB", {
-										style: "currency",
-										currency: "EUR",
-									})}
-								</td>
-								<td>
-									{totalInterestOnThisInvestment.toLocaleString("en-GB", {
-										style: "currency",
-										currency: "EUR",
-									})}
-								</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-
+			<div ref={pdfDownload}>
+				<table>
+					<thead>
+						<tr>
+							<th>Transaction date</th>
+							<th>Loan Id</th>
+							<th>Project Name</th>
+							<th>Project Grade</th>
+							<th>Loan duration in months</th>
+							<th>Amount in euro</th>
+							<th>Loan Interest Rate</th>
+							<th>Monthly repayments</th>
+							<th>Total Interest earned on this loan</th>
+						</tr>
+					</thead>
+					<tbody>
+						{filterLoanProjects()?.map((el) => {
+							const {
+								amountInEuro,
+								loanId,
+								loanInterestRate,
+								monthlyRepayment,
+								projectName,
+								totalInterestOnThisInvestment,
+								transactionDate,
+								projectGrade,
+								loanDurationInMonths,
+							} = el;
+							return (
+								<tr
+									key={
+										transactionDate +
+										loanId +
+										amountInEuro +
+										projectName +
+										monthlyRepayment
+									}
+								>
+									<td>
+										{moment(transactionDate).format("MMMM Do YYYY, h:mm:ss a")}
+									</td>
+									<td>{loanId}</td>
+									<td>{projectName}</td>
+									<td>{projectGrade}</td>
+									<td>{loanDurationInMonths}</td>
+									<td>
+										{amountInEuro.toLocaleString("en-GB", {
+											style: "currency",
+											currency: "EUR",
+										})}
+									</td>
+									<td>{loanInterestRate}%</td>
+									<td>
+										{monthlyRepayment.toLocaleString("en-GB", {
+											style: "currency",
+											currency: "EUR",
+										})}
+									</td>
+									<td>
+										{totalInterestOnThisInvestment.toLocaleString("en-GB", {
+											style: "currency",
+											currency: "EUR",
+										})}
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
 			{/* FINAL DIV END OF THE COMPONENT */}
 		</div>
 	);
