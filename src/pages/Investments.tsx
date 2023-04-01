@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import moment from "moment";
 import { jsPDF } from "jspdf";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
 const Investments = (props: Props) => {
 	const [loanName, setLoanName] = useState("");
 	const [selectTerm, setSelectTerm] = useState("all");
+	const [bigToSmallSort, setBigToSmallSort] = useState("no_sort");
 
 	const pdfDownload = useRef<HTMLInputElement>(null);
 
@@ -65,10 +67,13 @@ const Investments = (props: Props) => {
 			}
 		}
 
-		// if (loanName !== "" && selectTerm !== "all") {
-		// 	console.log("both filters");
-		// 	return;
-		// }
+		if (bigToSmallSort === "sorted_Small_First") {
+			test = test.sort((a, b) => a.amountInEuro - b.amountInEuro);
+		}
+
+		if (bigToSmallSort === "sorted_Big_First") {
+			test = test.sort((a, b) => b.amountInEuro - a.amountInEuro);
+		}
 
 		return test;
 	}
@@ -79,13 +84,32 @@ const Investments = (props: Props) => {
 		(window as any).html2pdf(pdfDownload.current).save();
 	}
 
+	function handleAmountSort() {
+		if (bigToSmallSort === "no_sort") {
+			setBigToSmallSort("sorted_Big_First");
+		}
+
+		if (bigToSmallSort === "sorted_Big_First") {
+			setBigToSmallSort("sorted_Small_First");
+		}
+
+		if (bigToSmallSort === "sorted_Small_First") {
+			setBigToSmallSort("no_sort");
+		}
+	}
+
 	useEffect(() => {
 		console.log("loanName", loanName);
 		console.log("selectTerm", selectTerm);
-	}, [loanName, selectTerm]);
+		console.log("bigToSmallSort", bigToSmallSort);
+	}, [loanName, selectTerm, bigToSmallSort]);
 
 	return (
 		<div className="InvestmentsContainer">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Investments page</title>
+			</Helmet>
 			<h1>My Investments</h1>
 			<div>
 				<p>Loan Name / ID</p>
@@ -122,7 +146,10 @@ const Investments = (props: Props) => {
 							<th>Project Name</th>
 							<th>Project Grade</th>
 							<th>Loan duration in months</th>
-							<th>Amount in euro</th>
+							<th>
+								Amount in euro{" "}
+								<button onClick={handleAmountSort}>{bigToSmallSort}</button>
+							</th>
 							<th>Loan Interest Rate</th>
 							<th>Monthly repayments</th>
 							<th>Total Interest earned on this loan</th>

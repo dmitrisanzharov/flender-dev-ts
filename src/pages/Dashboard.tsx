@@ -5,6 +5,7 @@ import {
 	notifyUser,
 	setAllNotificationsToTrue,
 } from "../helper/helperFunctions";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -84,6 +85,9 @@ const Dashboard = (props: Props) => {
 
 	return (
 		<div className="DashboardContainer">
+			<Helmet>
+				<title>Dashboard</title>
+			</Helmet>
 			{showUserNotification && (
 				<div className="DashboardContainer_NotificationsBox drr">
 					{notifyUser()?.map((el) => {

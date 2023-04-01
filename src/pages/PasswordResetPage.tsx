@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
 import { passwordResetPage } from "../utils/serverRoutes";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 type Props = {};
@@ -87,6 +88,9 @@ const PasswordResetPage = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Password Reset Page</title>
+			</Helmet>
 			<h1>Password reset page</h1>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>

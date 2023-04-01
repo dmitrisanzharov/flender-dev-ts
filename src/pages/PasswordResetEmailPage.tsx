@@ -5,6 +5,7 @@ import { string, z } from "zod";
 import axios from "axios";
 import { passwordResetEmailPage } from "../utils/serverRoutes";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -81,6 +82,9 @@ const PasswordResetEmailPage = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Password Reset EMAIL page</title>
+			</Helmet>
 			<h1>
 				Please enter your email - and we will email you password reset link
 			</h1>

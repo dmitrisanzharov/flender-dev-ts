@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
 import { withdrawFunds } from "../utils/serverRoutes";
 import { addNotification } from "../helper/helperFunctions";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 type Props = {};
@@ -67,6 +68,9 @@ const Withdraw = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Withdrawal</title>
+			</Helmet>
 			<h1>Withdraw your available balance</h1>
 			<h2>How much would you like to withdraw?</h2>
 			<p>

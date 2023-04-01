@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import moment from "moment";
 import html2pdf from "html2pdf.js";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -72,6 +73,42 @@ const Transactions = (props: Props) => {
 		(window as any).html2pdf(reportTemplatePdf.current).save();
 	}
 
+	function handleCSVDownload() {
+		const headers = [
+			"Transaction Type",
+			"Transaction Amount",
+			"All Other",
+		].toString();
+		console.log("headers: ", headers);
+
+		const values = data.map((el) => {
+			return Object.values(el).toString();
+		});
+		console.log("values: ", values);
+
+		const csvFormat = [headers, ...values].join("\n");
+		console.log("csvFormat: ", csvFormat);
+
+		csvClientDownload(csvFormat);
+	}
+
+	function csvClientDownload(input) {
+		const blob = new Blob([input], { type: "application/csv" });
+
+		const url = URL.createObjectURL(blob);
+		console.log("url: ", url);
+
+		const a = document.createElement("a");
+		a.download = "yourTransactionsInCSVFormat.csv";
+		a.href = url;
+		a.style.display = "none";
+
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+		URL.revokeObjectURL(url);
+	}
+
 	useEffect(() => {
 		userDataAndFilter();
 	}, []);
@@ -92,11 +129,19 @@ const Transactions = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Transactions page</title>
+			</Helmet>
 			<button onClick={handlePdfDownload} type="button">
 				download PDF
 			</button>
+			<span style={{ width: "1rem", display: "inline-block" }}></span>
+			<button onClick={handleCSVDownload}>download CSV</button>
 			<hr />
-			<div ref={reportTemplatePdf} style={{ width: "80vw" }}>
+			<div
+				ref={reportTemplatePdf}
+				style={{ width: "70vw", paddingLeft: "1rem" }}
+			>
 				<h1>Transactions</h1>
 				<div>
 					<button

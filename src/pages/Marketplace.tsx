@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getAllProjects } from "../utils/serverRoutes";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -57,6 +58,9 @@ const Marketplace = (props: Props) => {
 	if (state?.data) {
 		return (
 			<div className="MarketplaceContainer">
+				<Helmet>
+					<title>Marketplace</title>
+				</Helmet>
 				<h1>Marketplace</h1>
 				<div style={{ fontSize: "1.25rem", marginBottom: "1.25rem" }}>
 					<em>Successful Irish businesses growing with Flender finance</em>

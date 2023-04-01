@@ -8,6 +8,7 @@ import { login } from "../utils/serverRoutes";
 import { sessionUser } from "../utils/namesOfGlobalVariables";
 import { useNavigate } from "react-router-dom";
 import { addNotification } from "../helper/helperFunctions";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -104,11 +105,14 @@ const Login = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Login</title>
+			</Helmet>
 			<h1>Flenders Logo</h1>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
 					<p>Email</p>
-					<input type="text" {...register("email")} />
+					<input type="text" {...register("email")} placeholder="asd@asd.com" />
 					<div style={{ color: "red" }}>{errors?.email?.message as string}</div>
 					{userNotFound && (
 						<div style={{ color: "red" }}>User not found please try again</div>
@@ -119,6 +123,7 @@ const Login = (props: Props) => {
 					<input
 						type={showPass ? "text" : "password"}
 						{...register("password")}
+						placeholder="asd"
 					/>
 					<button type="button" onClick={() => setShowPass(!showPass)}>
 						{showPass ? "hide" : "show"}

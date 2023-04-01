@@ -6,6 +6,7 @@ import axios from "axios";
 import { addUser } from "../utils/serverRoutes";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -144,6 +145,9 @@ const InvestorRegistration = (props: Props) => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Investor Registration</title>
+			</Helmet>
 			<h3>Join today and start investing in minutes.</h3>
 			<hr />
 			<form onSubmit={handleSubmit(onSubmit)}>

@@ -11,6 +11,7 @@ import {
 } from "../helper/helperFunctions";
 import { addNotification } from "../helper/helperFunctions";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -144,6 +145,9 @@ const Invest = (props: Props) => {
 
 		return (
 			<div>
+				<Helmet>
+					<title>Invest page</title>
+				</Helmet>
 				<h1>Let us calculate your investment and return</h1>
 				<hr />
 				<h4>Overall repayment details</h4>

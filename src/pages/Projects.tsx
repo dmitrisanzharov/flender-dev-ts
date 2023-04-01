@@ -9,6 +9,7 @@ import {
 } from "../utils/namesOfGlobalVariables";
 import { Link } from "react-router-dom";
 import { calculateTotalInterest } from "../helper/helperFunctions";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -103,6 +104,9 @@ const Projects = (props: Props) => {
 
 		return (
 			<div>
+				<Helmet>
+					<title>Project page</title>
+				</Helmet>
 				<h1>{projectName}</h1>
 				<h2>by {nameOfCompany}</h2>
 				<p>

@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { addNotification } from "../helper/helperFunctions";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
@@ -69,6 +70,10 @@ const AddFunds = (props: Props) => {
 	}
 	return (
 		<div>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Add funds</title>
+			</Helmet>
 			<h1>Add Funds To Your Account</h1>
 
 			<form onSubmit={handleSubmit(onSubmit)}>

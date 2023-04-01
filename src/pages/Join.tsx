@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 type Props = {};
 
 const Join = (props: Props) => {
 	return (
 		<div>
+			<Helmet>
+				<title>Join</title>
+			</Helmet>
 			<h3>Earn great returns by lending to Irish businesses</h3>
 			<p>
 				Earn great returns by investing in Irish businesses and get started with
@@ -22,7 +26,10 @@ const Join = (props: Props) => {
 				decisions. Loans from €10,000 to €300,000, competitive rates and terms
 				of up to 60 months.
 			</p>
-			<button>Get a Flender loan</button>
+			<button>
+				Get a Flender loan{" "}
+				<span className="toDoWarning">- TO DO, button does nothing atm</span>
+			</button>
 		</div>
 	);
 };
