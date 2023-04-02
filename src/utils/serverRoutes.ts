@@ -1,7 +1,8 @@
-// PROD
-// const rootServer = "";
 // DEV
-const rootServer = "http://localhost:5000/";
+// const rootServer = "http://localhost:5000/";
+
+// PROD
+const rootServer = "https://main-server-tgoe.onrender.com/";
 
 export const addUser = rootServer + "flender-ts/add-user";
 export const login = rootServer + "flender-ts/login";
